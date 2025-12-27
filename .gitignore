@@ -1,0 +1,10 @@
+node_modules/
+.next/
+dist/
+.vercel/
+public/products/
+*.jpg
+*.jpeg
+*.png
+*.webp
+.DS_Store
