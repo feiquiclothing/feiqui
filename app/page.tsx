@@ -5,6 +5,9 @@ import toast, { Toaster } from "react-hot-toast";
 
 const PHONE = "59899079595";
 
+/** =========================
+ *  TYPES
+ * ========================= */
 type Faction = "civil" | "resistencia" | "profetas";
 
 type Product = {
@@ -20,7 +23,48 @@ type Product = {
   stockBySize: Record<string, number>; // { S: 2, M: 0, L: 5, XL: 1 }
 };
 
+type CartItem = {
+  code: string; // interno
+  size: string;
+  qty: number;
+};
+
+type ShippingType = "" | "retiro" | "mvdeo" | "interior";
+
+/** =========================
+ *  DATA
+ * ========================= */
 const PRODUCTS: Product[] = [
+  {
+    code: "FK-06",
+    faction: "profetas",
+    number: "01",
+    slug: "pft-01",
+    drop: "Preventa hasta 28/1",
+    sort: 10,
+    active: true,
+    priceUYU: 2600,
+    images: [
+      "/products/profetas/pft-01/01.jpg",
+      "/products/profetas/pft-01/02.jpg",
+      "/products/profetas/pft-01/03.jpg",
+      "/products/profetas/pft-01/04.jpg",
+      "/products/profetas/pft-01/05.jpg",
+      "/products/profetas/pft-01/06.jpg",
+      "/products/profetas/pft-01/07.jpg",
+      "/products/profetas/pft-01/08.jpg",
+      "/products/profetas/pft-01/09.jpg",
+      "/products/profetas/pft-01/10.jpg",
+      "/products/profetas/pft-01/11.jpg",
+      "/products/profetas/pft-01/12.jpg",
+      "/products/profetas/pft-01/13.jpg",
+      "/products/profetas/pft-01/14.jpg",
+      "/products/profetas/pft-01/15.jpg",
+      "/products/profetas/pft-01/16.jpg",
+      "/products/profetas/pft-01/17.jpg",
+    ],
+    stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
+  },
   {
     code: "FK-01",
     faction: "civil",
@@ -30,7 +74,13 @@ const PRODUCTS: Product[] = [
     sort: 10,
     active: true,
     priceUYU: 1400,
-    images: ["/products/civil/cvl-01/1.jpg", "/products/civil/cvl-01/2.jpg", "/products/civil/cvl-01/3.jpg", "/products/civil/cvl-01/4.jpg", "/products/civil/cvl-01/5.jpg"],
+    images: [
+      "/products/civil/cvl-01/1.jpg",
+      "/products/civil/cvl-01/2.jpg",
+      "/products/civil/cvl-01/3.jpg",
+      "/products/civil/cvl-01/4.jpg",
+      "/products/civil/cvl-01/5.jpg",
+    ],
     stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
   },
   {
@@ -42,7 +92,13 @@ const PRODUCTS: Product[] = [
     sort: 20,
     active: true,
     priceUYU: 1500,
-    images: ["/products/civil/cvl-28/1.jpg", "/products/civil/cvl-28/2.jpg", "/products/civil/cvl-28/3.jpg", "/products/civil/cvl-28/4.jpg", "/products/civil/cvl-28/5.jpg"],
+    images: [
+      "/products/civil/cvl-28/1.jpg",
+      "/products/civil/cvl-28/2.jpg",
+      "/products/civil/cvl-28/3.jpg",
+      "/products/civil/cvl-28/4.jpg",
+      "/products/civil/cvl-28/5.jpg",
+    ],
     stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
   },
   {
@@ -54,7 +110,13 @@ const PRODUCTS: Product[] = [
     sort: 20,
     active: true,
     priceUYU: 1500,
-    images: ["/products/civil/cvl-29/1.jpg", "/products/civil/cvl-29/2.jpg", "/products/civil/cvl-29/3.jpg", "/products/civil/cvl-29/4.jpg", "/products/civil/cvl-29/5.jpg"],
+    images: [
+      "/products/civil/cvl-29/1.jpg",
+      "/products/civil/cvl-29/2.jpg",
+      "/products/civil/cvl-29/3.jpg",
+      "/products/civil/cvl-29/4.jpg",
+      "/products/civil/cvl-29/5.jpg",
+    ],
     stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
   },
   {
@@ -66,7 +128,14 @@ const PRODUCTS: Product[] = [
     sort: 20,
     active: true,
     priceUYU: 1500,
-    images: ["/products/civil/cvl-30/1.jpg", "/products/civil/cvl-30/2.jpg", "/products/civil/cvl-30/3.jpg", "/products/civil/cvl-30/4.jpg", "/products/civil/cvl-30/5.jpg", "/products/civil/cvl-30/6.jpg"],
+    images: [
+      "/products/civil/cvl-30/1.jpg",
+      "/products/civil/cvl-30/2.jpg",
+      "/products/civil/cvl-30/3.jpg",
+      "/products/civil/cvl-30/4.jpg",
+      "/products/civil/cvl-30/5.jpg",
+      "/products/civil/cvl-30/6.jpg",
+    ],
     stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
   },
   {
@@ -78,17 +147,74 @@ const PRODUCTS: Product[] = [
     sort: 20,
     active: true,
     priceUYU: 2500,
-    images: ["/products/civil/cvl-31/1.jpg", "/products/civil/cvl-31/2.jpg", "/products/civil/cvl-31/3.jpg", "/products/civil/cvl-31/4.jpg", "/products/civil/cvl-31/5.jpg"],
+    images: [
+      "/products/civil/cvl-31/1.jpg",
+      "/products/civil/cvl-31/2.jpg",
+      "/products/civil/cvl-31/3.jpg",
+      "/products/civil/cvl-31/4.jpg",
+      "/products/civil/cvl-31/5.jpg",
+    ],
+    stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
+  },
+  {
+    code: "FK-07",
+    faction: "civil",
+    number: "24",
+    slug: "cvl-24",
+    drop: "",
+    sort: 10,
+    active: true,
+    priceUYU: 2200,
+    images: [
+      "/products/civil/cvl-24/1.jpg",
+      "/products/civil/cvl-24/2.jpg",
+      "/products/civil/cvl-24/3.jpg",
+      "/products/civil/cvl-24/4.jpg",
+      "/products/civil/cvl-24/5.jpg",
+    ],
+    stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
+  },
+  {
+    code: "FK-08",
+    faction: "civil",
+    number: "21",
+    slug: "cvl-21",
+    drop: "",
+    sort: 10,
+    active: true,
+    priceUYU: 1800,
+    images: [
+      "/products/civil/cvl-21/1.jpg",
+      "/products/civil/cvl-21/2.jpg",
+      "/products/civil/cvl-21/3.jpg",
+      "/products/civil/cvl-21/4.jpg",
+      "/products/civil/cvl-21/5.jpg",
+    ],
+    stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
+  },
+  {
+    code: "FK-09",
+    faction: "civil",
+    number: "20",
+    slug: "cvl-20",
+    drop: "",
+    sort: 10,
+    active: true,
+    priceUYU: 2600,
+    images: [
+      "/products/civil/cvl-20/1.jpg",
+      "/products/civil/cvl-20/2.jpg",
+      "/products/civil/cvl-20/3.jpg",
+      "/products/civil/cvl-20/4.jpg",
+      "/products/civil/cvl-20/5.jpg",
+    ],
     stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
   },
 ];
 
-type CartItem = {
-  code: string; // interno
-  size: string;
-  qty: number;
-};
-
+/** =========================
+ *  HELPERS
+ * ========================= */
 function displayCode(p: { faction: Faction; number: string }) {
   if (p.faction === "civil") return `CVL-${p.number}`;
   if (p.faction === "resistencia") return `RST-${p.number}`;
@@ -104,23 +230,119 @@ function waLink(message: string) {
   return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
 }
 
-function formatCartMessage(cart: CartItem[]) {
-  const lines = cart
-    .map((i) => {
-      const p = getProductByCode(i.code);
-      const name = p ? displayCode(p) : i.code;
-      return `- ${name} / ${i.size} x${i.qty}`;
-    })
-    .join("\n");
-  return `Hola, quiero iniciar la compra:\n${lines}`;
-}
-
 // ✅ Precio sin signo, formateado es-UY (1.690)
 function formatPriceUYU(n?: number) {
   if (!n && n !== 0) return "";
   return new Intl.NumberFormat("es-UY", { maximumFractionDigits: 0 }).format(n);
 }
 
+/** =========================
+ *  SHIPPING
+ * ========================= */
+const MVDEO_ZONES = [
+  { label: "Centro / Cordón / Aguada", cost: 180 },
+  { label: "Parque Rodó / Punta Carretas / Pocitos", cost: 220 },
+  { label: "Otras zonas Montevideo", cost: 270 },
+] as const;
+
+const INTERIOR = { label: "Interior", cost: 360 } as const;
+
+function shippingCost(type: ShippingType, zoneLabel: string) {
+  if (type === "retiro") return 0;
+  if (type === "interior") return INTERIOR.cost;
+  if (type === "mvdeo") {
+    const found = MVDEO_ZONES.find((z) => z.label === zoneLabel);
+    return found?.cost ?? 0;
+  }
+  return 0;
+}
+
+function shippingLabel(type: ShippingType, zoneLabel: string) {
+  if (type === "retiro") return "Retiro";
+  if (type === "interior") return `${INTERIOR.label} — ${formatPriceUYU(INTERIOR.cost)}`;
+  if (type === "mvdeo" && zoneLabel) {
+    const found = MVDEO_ZONES.find((z) => z.label === zoneLabel);
+    return found ? `${found.label} — ${formatPriceUYU(found.cost)}` : zoneLabel;
+  }
+  return "";
+}
+
+/** =========================
+ *  ✅ TRANSFER + WA MESSAGE
+ * ========================= */
+const TRANSFER_INFO = [
+  "TRANSFERENCIA",
+  "Banco: Itaú",
+  "Titular: Adrián Antúnez",
+  "Cuenta Nº: 2856335",
+  "Moneda: UYU",
+].join("\n");
+
+function formatCartMessage(args: {
+  cart: CartItem[];
+  shippingType: ShippingType;
+  shippingZoneLabel: string;
+  customerName: string;
+  address: string;
+}) {
+  const { cart, shippingType, shippingZoneLabel, customerName, address } = args;
+
+  const items = cart
+    .map((i) => {
+      const p = getProductByCode(i.code);
+      const code = p ? displayCode(p) : i.code;
+
+      const unit = p?.priceUYU ?? 0;
+      const subtotal = unit * i.qty;
+
+      return `- ${code} / ${i.size} x${i.qty} — ${formatPriceUYU(unit)} c/u — ${formatPriceUYU(subtotal)}`;
+    })
+    .join("\n");
+
+  const productsTotal = cart.reduce((acc, i) => {
+    const p = getProductByCode(i.code);
+    return acc + (p?.priceUYU ?? 0) * i.qty;
+  }, 0);
+
+  const ship = shippingCost(shippingType, shippingZoneLabel);
+  const finalTotal = productsTotal + ship;
+
+  const envioBlock =
+    shippingType === "retiro"
+      ? ["ENTREGA:", "- Retiro"].join("\n")
+      : [
+          "ENTREGA:",
+          `- Envío: ${shippingType === "mvdeo" ? "Montevideo" : "Interior"}`,
+          `- Zona: ${shippingLabel(shippingType, shippingZoneLabel)}`,
+          `- Dirección/Barrio: ${address || ""}`,
+        ].join("\n");
+
+  return [
+    "INICIAR COMPRA",
+    "",
+    "PEDIDO:",
+    items || "- (vacío)",
+    "",
+    `TOTAL PRODUCTOS: ${formatPriceUYU(productsTotal)} UYU`,
+    `ENVIO: ${formatPriceUYU(ship)} UYU`,
+    `TOTAL: ${formatPriceUYU(finalTotal)} UYU`,
+    "",
+    envioBlock,
+    "",
+    "DATOS:",
+    `- Nombre: ${customerName || ""}`,
+    "",
+    "PLAZO: 1 semana.",
+    "",
+    TRANSFER_INFO,
+    "",
+    "Enviar comprobante por acá.",
+  ].join("\n");
+}
+
+/** =========================
+ *  PAGE
+ * ========================= */
 export default function Home() {
   // ✅ Fix hydration: renderizamos UI recién cuando montó en cliente
   const [mounted, setMounted] = useState(false);
@@ -133,6 +355,12 @@ export default function Home() {
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+
+  // ✅ Checkout preselección (ANTES de WhatsApp)
+  const [shippingTypeState, setShippingTypeState] = useState<ShippingType>("");
+  const [shippingZoneLabel, setShippingZoneLabel] = useState<string>("");
+  const [customerName, setCustomerName] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
 
   useEffect(() => {
     try {
@@ -211,7 +439,7 @@ export default function Home() {
     setCart([]);
   }
 
-  // ✅ Grid: ahora 4:5 tipo IG y “llena” más la card
+  // ✅ Grid: 4:5 tipo IG y “llena” más la card
   const photoBox: React.CSSProperties = {
     width: "100%",
     aspectRatio: "4 / 5",
@@ -223,8 +451,6 @@ export default function Home() {
     background: "#fff",
   };
 
-  // Si querés “más editorial” (cubre y se ve grande): objectFit: "cover"
-  // Si querés “catálogo limpio” (no recorta): objectFit: "contain"
   const imgStyle: React.CSSProperties = {
     width: "100%",
     height: "100%",
@@ -243,16 +469,70 @@ export default function Home() {
     color: "black",
   };
 
+  const input: React.CSSProperties = {
+    border: "1px solid #e5e5e5",
+    borderRadius: 10,
+    padding: "10px 12px",
+    fontSize: 12,
+    letterSpacing: 1,
+    outline: "none",
+    width: "100%",
+  };
+
+  const labelSmall: React.CSSProperties = {
+    fontSize: 11,
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    color: "#6f6f6f",
+  };
+
   const visibleProducts = useMemo(() => {
     return [...PRODUCTS].filter((p) => p.active !== false).sort((a, b) => (a.sort ?? 9999) - (b.sort ?? 9999));
   }, []);
+
+  const productsTotal = useMemo(() => {
+    return cart.reduce((acc, i) => {
+      const p = getProductByCode(i.code);
+      return acc + (p?.priceUYU ?? 0) * i.qty;
+    }, 0);
+  }, [cart]);
+
+  const ship = useMemo(() => shippingCost(shippingTypeState, shippingZoneLabel), [shippingTypeState, shippingZoneLabel]);
+  const finalTotal = productsTotal + ship;
+
+  function setShippingType(next: ShippingType) {
+    setShippingTypeState(next);
+    setShippingZoneLabel("");
+    setAddress("");
+    if (next === "interior") setShippingZoneLabel(INTERIOR.label);
+  }
+
+  const shippingReady =
+    shippingTypeState === "retiro"
+      ? true
+      : shippingTypeState === "mvdeo"
+      ? !!shippingZoneLabel && !!address
+      : shippingTypeState === "interior"
+      ? true && !!address
+      : false;
+
+  const checkoutReady = cart.length > 0 && !!customerName && shippingReady;
 
   // ✅ Si todavía no montó, devolvemos un contenedor estable (evita mismatch)
   if (!mounted) {
     return (
       <div style={{ background: "white", color: "black", minHeight: "100vh" }}>
         <div style={{ position: "sticky", top: 0, background: "white", zIndex: 5 }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "12px 24px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center" }}>
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: "0 auto",
+              padding: "12px 24px",
+              display: "grid",
+              gridTemplateColumns: "1fr auto 1fr",
+              alignItems: "center",
+            }}
+          >
             <div />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <img
@@ -277,7 +557,7 @@ export default function Home() {
     <div style={{ background: "white", color: "black", minHeight: "100vh" }}>
       <Toaster position="bottom-center" />
 
-      {/* Header sticky sin línea */}
+      {/* Header sticky */}
       <div style={{ position: "sticky", top: 0, background: "white", zIndex: 5 }}>
         <div
           style={{
@@ -343,7 +623,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ✅ Grid: min más grande para que las fotos “crezcan” */}
+      {/* Grid */}
       <div
         style={{
           display: "grid",
@@ -360,7 +640,6 @@ export default function Home() {
 
             <div style={{ marginTop: 10, fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>{displayCode(p)}</div>
 
-            {/* ✅ Precio sin $ */}
             {typeof p.priceUYU === "number" ? (
               <div style={{ marginTop: 4, fontSize: 12, letterSpacing: 1, color: "#9a9a9a" }}>{formatPriceUYU(p.priceUYU)}</div>
             ) : null}
@@ -384,6 +663,15 @@ export default function Home() {
           qtyInCart={qtyInCart}
           addToCart={addToCart}
           closeModal={closeModal}
+          // checkout state (shared)
+          shippingType={shippingTypeState}
+          setShippingType={setShippingType}
+          shippingZoneLabel={shippingZoneLabel}
+          setShippingZoneLabel={setShippingZoneLabel}
+          customerName={customerName}
+          setCustomerName={setCustomerName}
+          address={address}
+          setAddress={setAddress}
         />
       ) : null}
 
@@ -414,9 +702,7 @@ export default function Home() {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <div style={{ fontSize: 12, letterSpacing: 1, textTransform: "uppercase", color: "#6f6f6f" }}>
-                CART ({cartCount})
-              </div>
+              <div style={{ fontSize: 12, letterSpacing: 1, textTransform: "uppercase", color: "#6f6f6f" }}>CART ({cartCount})</div>
               <button style={btn} onClick={() => setCartOpen(false)}>
                 ✕
               </button>
@@ -468,6 +754,69 @@ export default function Home() {
               </div>
             )}
 
+            {/* Checkout fields */}
+            <div style={{ borderTop: "1px solid #e5e5e5", marginTop: 8 }} />
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={labelSmall}>ENTREGA</div>
+
+              <select
+                style={input}
+                value={shippingTypeState}
+                onChange={(e) => setShippingType(e.target.value as ShippingType)}
+              >
+                <option value="">Tipo</option>
+                <option value="retiro">Retiro</option>
+                <option value="mvdeo">Envío Montevideo</option>
+                <option value="interior">Envío Interior</option>
+              </select>
+
+              {shippingTypeState === "mvdeo" ? (
+                <select
+                  style={input}
+                  value={shippingZoneLabel}
+                  onChange={(e) => setShippingZoneLabel(e.target.value)}
+                >
+                  <option value="">Zona</option>
+                  {MVDEO_ZONES.map((z) => (
+                    <option key={z.label} value={z.label}>
+                      {z.label} — {formatPriceUYU(z.cost)}
+                    </option>
+                  ))}
+                </select>
+              ) : null}
+
+              {shippingTypeState === "interior" ? (
+                <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+                  {INTERIOR.label} — {formatPriceUYU(INTERIOR.cost)}
+                </div>
+              ) : null}
+
+              {shippingTypeState && shippingTypeState !== "retiro" ? (
+                <input
+                  style={input}
+                  placeholder={shippingTypeState === "interior" ? "Dirección / Depto / Ciudad" : "Dirección / Barrio"}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              ) : null}
+
+              <div style={labelSmall}>DATOS</div>
+              <input style={input} placeholder="Nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
+
+              {/* Totales */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+                  PRODUCTOS: {formatPriceUYU(productsTotal)} UYU
+                </div>
+                <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+                  ENVÍO: {formatPriceUYU(ship)} UYU
+                </div>
+                <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+                  TOTAL: {formatPriceUYU(finalTotal)} UYU
+                </div>
+              </div>
+            </div>
+
             <div style={{ marginTop: "auto", display: "flex", gap: 10, flexWrap: "wrap" }}>
               <button style={btn} onClick={clearCart} disabled={cart.length === 0}>
                 VACIAR
@@ -478,12 +827,21 @@ export default function Home() {
                   ...btn,
                   display: "inline-flex",
                   alignItems: "center",
-                  opacity: cart.length === 0 ? 0.55 : 1,
-                  pointerEvents: cart.length === 0 ? "none" : "auto",
+                  opacity: checkoutReady ? 1 : 0.45,
+                  pointerEvents: checkoutReady ? "auto" : "none",
                 }}
-                href={waLink(formatCartMessage(cart))}
+                href={waLink(
+                  formatCartMessage({
+                    cart,
+                    shippingType: shippingTypeState,
+                    shippingZoneLabel,
+                    customerName,
+                    address,
+                  })
+                )}
                 target="_blank"
                 rel="noreferrer"
+                title={!checkoutReady ? "Completar entrega + nombre" : ""}
               >
                 INICIAR COMPRA →
               </a>
@@ -495,6 +853,9 @@ export default function Home() {
   );
 }
 
+/** =========================
+ *  MODAL
+ * ========================= */
 function FullModal(props: {
   active: Product;
   imgIndex: number;
@@ -505,8 +866,34 @@ function FullModal(props: {
   qtyInCart: (code: string, size: string) => number;
   addToCart: (code: string, size: string) => void;
   closeModal: () => void;
+
+  shippingType: ShippingType;
+  setShippingType: (t: ShippingType) => void;
+  shippingZoneLabel: string;
+  setShippingZoneLabel: (z: string) => void;
+  customerName: string;
+  setCustomerName: (n: string) => void;
+  address: string;
+  setAddress: (a: string) => void;
 }) {
-  const { active, imgIndex, setImgIndex, size, setSize, qtyInCart, addToCart, closeModal } = props;
+  const {
+    active,
+    imgIndex,
+    setImgIndex,
+    size,
+    setSize,
+    qtyInCart,
+    addToCart,
+    closeModal,
+    shippingType,
+    setShippingType,
+    shippingZoneLabel,
+    setShippingZoneLabel,
+    customerName,
+    setCustomerName,
+    address,
+    setAddress,
+  } = props;
 
   const [startX, setStartX] = useState<number | null>(null);
   const [startY, setStartY] = useState<number | null>(null);
@@ -635,6 +1022,16 @@ function FullModal(props: {
     cursor: "pointer",
   };
 
+  const field: React.CSSProperties = {
+    border: "1px solid #e5e5e5",
+    borderRadius: 10,
+    padding: "10px 12px",
+    fontSize: 12,
+    letterSpacing: 1,
+    outline: "none",
+    width: "100%",
+  };
+
   const dotStyle = (activeDot: boolean): React.CSSProperties => ({
     width: 10,
     height: 10,
@@ -650,7 +1047,58 @@ function FullModal(props: {
   const remaining = stock - already;
   const inStock = size && remaining > 0;
 
-  const wpp = waLink(`Hola, quiero comprar un ${displayCode(active)} talle ${size}.`);
+  function setType(t: ShippingType) {
+    setShippingType(t);
+    setShippingZoneLabel("");
+    setAddress("");
+    if (t === "interior") setShippingZoneLabel(INTERIOR.label);
+  }
+
+  const shippingReady =
+    shippingType === "retiro"
+      ? true
+      : shippingType === "mvdeo"
+      ? !!shippingZoneLabel && !!address
+      : shippingType === "interior"
+      ? true && !!address
+      : false;
+
+  const readyOneItem = !!customerName && !!shippingType && shippingReady;
+
+  const productsTotal = typeof active.priceUYU === "number" ? active.priceUYU : 0;
+  const ship = shippingCost(shippingType, shippingZoneLabel);
+  const finalTotal = productsTotal + ship;
+
+  const wpp = waLink(
+    [
+      "INICIAR COMPRA",
+      "",
+      "PEDIDO:",
+      `- ${displayCode(active)} / ${size} x1 — ${formatPriceUYU(productsTotal)} UYU`,
+      "",
+      `TOTAL PRODUCTOS: ${formatPriceUYU(productsTotal)} UYU`,
+      `ENVIO: ${formatPriceUYU(ship)} UYU`,
+      `TOTAL: ${formatPriceUYU(finalTotal)} UYU`,
+      "",
+      shippingType === "retiro"
+        ? ["ENTREGA:", "- Retiro"].join("\n")
+        : [
+            "ENTREGA:",
+            `- Envío: ${shippingType === "mvdeo" ? "Montevideo" : "Interior"}`,
+            `- Zona: ${shippingLabel(shippingType, shippingZoneLabel)}`,
+            `- Dirección/Barrio: ${address || ""}`,
+          ].join("\n"),
+      "",
+      "DATOS:",
+      `- Nombre: ${customerName || ""}`,
+      "",
+      "PLAZO: 1 semana.",
+      "",
+      TRANSFER_INFO,
+      "",
+      "Enviar comprobante por acá.",
+    ].join("\n")
+  );
 
   return (
     <div
@@ -742,7 +1190,6 @@ function FullModal(props: {
           <div style={{ color: "#6f6f6f", fontSize: 12, letterSpacing: 1, textTransform: "uppercase" }}>
             {displayCode(active)}
             {active.drop ? ` — ${active.drop}` : ""}
-            {/* ✅ Precio sin $ (podés dejar o sacar el “UYU”) */}
             {typeof active.priceUYU === "number" ? ` — ${formatPriceUYU(active.priceUYU)}` : ""}
           </div>
 
@@ -776,6 +1223,48 @@ function FullModal(props: {
             })}
           </div>
 
+          {/* Checkout minimal dentro del modal */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <select style={field} value={shippingType} onChange={(e) => setType(e.target.value as ShippingType)}>
+              <option value="">Entrega</option>
+              <option value="retiro">Retiro</option>
+              <option value="mvdeo">Envío Montevideo</option>
+              <option value="interior">Envío Interior</option>
+            </select>
+
+            {shippingType === "mvdeo" ? (
+              <select style={field} value={shippingZoneLabel} onChange={(e) => setShippingZoneLabel(e.target.value)}>
+                <option value="">Zona</option>
+                {MVDEO_ZONES.map((z) => (
+                  <option key={z.label} value={z.label}>
+                    {z.label} — {formatPriceUYU(z.cost)}
+                  </option>
+                ))}
+              </select>
+            ) : null}
+
+            {shippingType === "interior" ? (
+              <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+                {INTERIOR.label} — {formatPriceUYU(INTERIOR.cost)}
+              </div>
+            ) : null}
+
+            {shippingType && shippingType !== "retiro" ? (
+              <input
+                style={field}
+                placeholder={shippingType === "interior" ? "Dirección / Depto / Ciudad" : "Dirección / Barrio"}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            ) : null}
+
+            <input style={field} placeholder="Nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
+
+            <div style={{ fontSize: 12, letterSpacing: 1, color: "#6f6f6f" }}>
+              TOTAL: {formatPriceUYU(finalTotal)} UYU
+            </div>
+          </div>
+
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <button
               onClick={() => addToCart(active.code, size)}
@@ -790,7 +1279,14 @@ function FullModal(props: {
               href={wpp}
               target="_blank"
               rel="noreferrer"
-              style={{ ...btnStyle, display: "inline-flex", alignItems: "center", opacity: size ? 1 : 0.5, pointerEvents: size ? "auto" : "none" }}
+              style={{
+                ...btnStyle,
+                display: "inline-flex",
+                alignItems: "center",
+                opacity: readyOneItem ? 1 : 0.45,
+                pointerEvents: readyOneItem ? "auto" : "none",
+              }}
+              title={!readyOneItem ? "Completar entrega + nombre" : ""}
             >
               INICIAR COMPRA →
             </a>
