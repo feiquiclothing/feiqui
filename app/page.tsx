@@ -40,7 +40,7 @@ const PRODUCTS: Product[] = [
     faction: "profetas",
     number: "01",
     slug: "pft-01",
-    drop: "Preventa hasta 28/1",
+    drop: "",
     sort: 10,
     active: true,
     priceUYU: 2600,
