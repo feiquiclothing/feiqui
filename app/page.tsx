@@ -36,6 +36,25 @@ type ShippingType = "" | "retiro" | "mvdeo" | "interior";
  * ========================= */
 const PRODUCTS: Product[] = [
   {
+    code: "FK-32",
+    faction: "civil",
+    number: "32",
+    slug: "cvl-32",
+    drop: "",
+    sort: 9,
+    active: true,
+    priceUYU: 2900,
+    images: [
+      "/products/civil/cvl-32/IMG_1842.jpg",
+      "/products/civil/cvl-32/IMG_1844.jpg",
+      "/products/civil/cvl-32/IMG_1845.jpg",
+      "/products/civil/cvl-32/IMG_1847.jpg",
+      "/products/civil/cvl-32/IMG_1850.jpg",
+      "/products/civil/cvl-32/IMG_1852.jpg",
+    ],
+    stockBySize: { S: 5, M: 5, L: 5, XL: 5 },
+  },
+  {
     code: "FK-06",
     faction: "profetas",
     number: "01",
