@@ -183,7 +183,7 @@ const PRODUCTS: Product[] = [
     drop: "",
     sort: 10,
     active: true,
-    priceUYU: 2200,
+    priceUYU: 2500,
     images: [
       "/products/civil/cvl-24/1.jpg",
       "/products/civil/cvl-24/2.jpg",
